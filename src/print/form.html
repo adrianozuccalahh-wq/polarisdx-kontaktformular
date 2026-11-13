@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<title>{{t.docTitle}}</title>
+<style>
+@font-face { font-family: "Figtree"; font-weight: 400; src: url(data:font/woff2;base64,{{FONT_400}}) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 500; src: url(data:font/woff2;base64,{{FONT_500}}) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 600; src: url(data:font/woff2;base64,{{FONT_600}}) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 700; src: url(data:font/woff2;base64,{{FONT_700}}) format("woff2"); }
+@page { size: A4; margin: 0; }
+:root {
+  --blue: #4A86CF; --blue-ink: #2D67AA; --navy: #1C2B45; --text: #33415A; --muted: #677288;
+  --rule: #9FB9E0; --rule-soft: #DDE7F5; --tint: #EEF4FC;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: "Figtree", sans-serif; color: var(--text); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: #fff; }
+
+.deco { position: absolute; width: 124mm; height: 124mm; right: -62mm; top: -62mm; fill: var(--blue); opacity: .1; }
+
+.content { position: absolute; inset: 16mm 18mm 14mm 18mm; display: flex; flex-direction: column; }
+.logo { display: block; height: 12mm; width: auto; }
+
+.title { margin-top: 12mm; }
+h1 { margin: 0; font-size: 25pt; line-height: 1.05; font-weight: 700; color: var(--navy); letter-spacing: -.012em; }
+.lead { margin: 2.6mm 0 0; font-size: 10.2pt; line-height: 1.4; color: var(--muted); max-width: 132mm; }
+
+.fields { margin-top: 5mm; }
+.row { display: grid; grid-template-columns: 10.5mm 1fr; column-gap: 5mm; align-items: start; margin-top: 4.6mm; }
+.ic { width: 10.5mm; height: 10.5mm; border-radius: 50%; background: var(--blue); color: #fff; display: grid; place-items: center; }
+.ic svg { width: 5.3mm; height: 5.3mm; stroke-width: 1.9; }
+.lbl { display: flex; align-items: baseline; gap: 3mm; padding-top: 3.1mm; font-size: 10.6pt; font-weight: 600; color: var(--navy); line-height: 1.1; }
+.hint { font-size: 7.8pt; font-weight: 500; color: var(--muted); letter-spacing: .01em; }
+.line { height: 8.8mm; border-bottom: .33mm solid var(--rule); }
+.sub { margin-top: .9mm; font-size: 6.9pt; font-weight: 500; letter-spacing: .03em; color: #8E98AA; }
+.sub + .line { height: 8.4mm; }
+
+.dots { margin-top: 7mm; height: 2mm; background: radial-gradient(circle, var(--rule) .42mm, transparent .48mm) 0 50% / 3.4mm 2mm repeat-x; opacity: .9; }
+
+.box {
+  margin-top: 3.4mm; height: 59mm; border: .33mm solid var(--rule); border-radius: 4mm;
+  background: repeating-linear-gradient(to bottom, transparent 0 8.3mm, var(--rule-soft) 8.3mm 8.6mm) 0 4.2mm / 100% calc(100% - 9mm) no-repeat;
+  background-origin: content-box; padding: 0 6mm;
+}
+
+.foot { margin-top: auto; display: grid; grid-template-columns: 1fr 70mm; column-gap: 9mm; align-items: end; }
+.consent { display: flex; gap: 3mm; font-size: 7.7pt; line-height: 1.42; color: var(--muted); }
+.cb { flex: none; width: 4.3mm; height: 4.3mm; margin-top: .2mm; border: .35mm solid var(--blue-ink); border-radius: 1.1mm; }
+.sign { margin-top: 9mm; display: grid; grid-template-columns: 34mm 1fr; column-gap: 6mm; }
+.sign div { border-top: .3mm solid var(--rule); padding-top: 1.3mm; font-size: 7pt; font-weight: 500; letter-spacing: .03em; color: #8E98AA; }
+
+.qrcard { display: flex; gap: 3.6mm; align-items: center; padding: 2.8mm 3.6mm 2.8mm 2.8mm; border-radius: 4mm; background: var(--tint); }
+.qrbox { flex: none; width: 27mm; height: 27mm; border-radius: 2.2mm; overflow: hidden; background: #fff; }
+.qrbox svg { display: block; width: 100%; height: 100%; }
+.qrtext b { display: block; font-size: 10.4pt; line-height: 1.15; font-weight: 700; color: var(--navy); }
+.qrtext span { display: block; margin-top: 1.2mm; font-size: 7.7pt; line-height: 1.38; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+  <svg class="deco" viewBox="-102 -102 204 204" aria-hidden="true">{{RING}}</svg>
+
+  <div class="content">
+    <header>{{LOGO_SVG}}</header>
+
+    <div class="title">
+      <h1>{{t.title}}</h1>
+      <p class="lead">{{t.lead}}</p>
+    </div>
+
+    <div class="fields">
+      <div class="row">
+        <div class="ic">{{icon:user}}</div>
+        <div><div class="lbl">{{t.name}} <span class="hint">{{t.nameHint}}</span></div><div class="line"></div></div>
+      </div>
+      <div class="row">
+        <div class="ic">{{icon:pin}}</div>
+        <div>
+          <div class="lbl">{{t.address}}</div>
+          <div class="line"></div><div class="sub">{{t.street}}</div>
+          <div class="line"></div><div class="sub">{{t.city}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ic">{{icon:phone}}</div>
+        <div><div class="lbl">{{t.phone}}</div><div class="line"></div></div>
+      </div>
+      <div class="row">
+        <div class="ic">{{icon:mail}}</div>
+        <div><div class="lbl">{{t.email}} <span class="hint">{{t.emailHint}}</span></div><div class="line"></div></div>
+      </div>
+    </div>
+
+    <div class="dots"></div>
+
+    <div class="row">
+      <div class="ic">{{icon:star}}</div>
+      <div class="lbl">{{t.request}} <span class="hint">{{t.requestHint}}</span></div>
+    </div>
+    <div class="box"></div>
+
+    <div class="foot">
+      <div>
+        <div class="consent"><span class="cb"></span><span>{{t.consent}}</span></div>
+        <div class="sign"><div>{{t.date}}</div><div>{{t.signature}}</div></div>
+      </div>
+      <div class="qrcard">
+        <div class="qrbox">{{QR_SVG}}</div>
+        <div class="qrtext"><b>{{t.qrTitle}}</b><span>{{t.qrText}}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

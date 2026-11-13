@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PolarisDX · Scan to get in touch</title>
+<style>
+@font-face { font-family: "Figtree"; font-weight: 400; src: url(data:font/woff2;base64,{{FONT_400}}) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 500; src: url(data:font/woff2;base64,{{FONT_500}}) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 600; src: url(data:font/woff2;base64,{{FONT_600}}) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 700; src: url(data:font/woff2;base64,{{FONT_700}}) format("woff2"); }
+@page { size: A4; margin: 0; }
+:root { --blue: #4A86CF; --blue-ink: #2D67AA; --navy: #1C2B45; --muted: #677288; --tint: #EEF4FC; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: "Figtree", sans-serif; color: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: #fff; text-align: center; }
+.deco { position: absolute; fill: var(--blue); }
+.deco.a { width: 130mm; height: 130mm; right: -65mm; top: -65mm; opacity: .09; }
+.deco.b { width: 110mm; height: 110mm; left: -55mm; bottom: -55mm; opacity: .07; }
+.content { position: absolute; inset: 20mm 20mm 16mm; display: flex; flex-direction: column; align-items: center; }
+.logo { display: block; height: 15mm; width: auto; }
+h1 { margin: 15mm 0 0; font-size: 34pt; line-height: 1.04; font-weight: 700; letter-spacing: -.015em; }
+.de { margin: 2.6mm 0 0; font-size: 15pt; font-weight: 500; color: var(--muted); }
+
+.frame { position: relative; margin-top: 13mm; padding: 7mm; border-radius: 9mm; background: #fff;
+  box-shadow: 0 0 0 1.1mm var(--blue), 0 3mm 9mm -2mm rgba(28,43,69,.22); }
+.frame .qr { display: block; width: 98mm; height: 98mm; }
+.tab { position: absolute; left: 50%; top: 0; transform: translate(-50%, -55%); padding: 2.2mm 6mm; border-radius: 99mm;
+  background: var(--blue-ink); color: #fff; font-size: 10.5pt; font-weight: 700; letter-spacing: .2em; white-space: nowrap; }
+
+.steps { margin-top: 14mm; width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 6mm; }
+.step { display: flex; flex-direction: column; align-items: center; }
+.ic { width: 13mm; height: 13mm; border-radius: 50%; background: var(--blue); color: #fff; display: grid; place-items: center; }
+.ic svg { width: 6.6mm; height: 6.6mm; stroke-width: 1.9; }
+.step b { margin-top: 3mm; font-size: 12pt; font-weight: 700; }
+.step > span { margin-top: .8mm; font-size: 9.5pt; color: var(--muted); }
+.n { color: var(--blue-ink); }
+
+.bottom { margin-top: auto; }
+.bottom p { margin: 0; font-size: 11pt; font-weight: 600; }
+.bottom p + p { margin-top: 1mm; font-size: 9.5pt; font-weight: 500; color: var(--muted); }
+.url { margin-top: 4mm !important; font-size: 8.5pt !important; letter-spacing: .02em; color: #8E98AA !important; }
+</style>
+</head>
+<body>
+<div class="page">
+  <svg class="deco a" viewBox="-102 -102 204 204" aria-hidden="true">{{RING}}</svg>
+  <svg class="deco b" viewBox="-102 -102 204 204" aria-hidden="true">{{RING}}</svg>
+  <div class="content">
+    {{LOGO_SVG}}
+    <h1>Let’s stay in touch.</h1>
+    <p class="de">Bleiben wir in Kontakt.</p>
+
+    <div class="frame"><div class="tab">SCAN ME</div>{{QR_SVG}}</div>
+
+    <div class="steps">
+      <div class="step"><div class="ic">{{icon:scan}}</div><b><span class="n">1</span> Scan the code</b><span>Code scannen</span></div>
+      <div class="step"><div class="ic">{{icon:pencil}}</div><b><span class="n">2</span> Fill in the form</b><span>Formular ausfüllen</span></div>
+      <div class="step"><div class="ic">{{icon:send}}</div><b><span class="n">3</span> Send – done!</b><span>Absenden – fertig!</span></div>
+    </div>
+
+    <div class="bottom">
+      <p>Your request goes straight to our team.</p>
+      <p>Ihre Anfrage geht direkt an unser Team.</p>
+      <p class="url">{{URL_SHORT}}</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
